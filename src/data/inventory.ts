@@ -17,9 +17,8 @@ export const inventory: InventoryItem[] = [
     vin: '4XARSX999S0002514',
     availability: 'Ready for pickup',
     location: 'Summit Ridge showroom',
-    image:
-      'https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Side-by-side parked on a mountain trail',
+    image: '',
+    imageAlt: 'Premium side-by-side inventory placeholder',
     features: ['Ride Command display', 'Fox 2.5 shocks', 'Winch ready', 'Roof and lighting package'],
     description:
       'A high-spec trail machine for riders who want a ready-now side-by-side with strong suspension, useful tech, and room for weekend upgrades.',
@@ -65,9 +64,8 @@ export const inventory: InventoryItem[] = [
     vin: '3JBLGAU45SJ000022',
     availability: 'Ready for pickup',
     location: 'Summit Ridge showroom',
-    image:
-      'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'ATV on a wooded trail',
+    image: '',
+    imageAlt: 'Premium ATV inventory placeholder',
     features: ['Two-up seating', 'Factory winch', 'Power steering', 'Trail-ready tires'],
     description:
       'A capable two-up ATV built for property work, hunting access, and long trail days without feeling stripped down.',
@@ -89,9 +87,8 @@ export const inventory: InventoryItem[] = [
     vin: 'YDV54444K223',
     availability: 'In showroom',
     location: 'Marine bay',
-    image:
-      'https://images.unsplash.com/photo-1534008897995-27a23e859048?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Personal watercraft at a dock',
+    image: '',
+    imageAlt: 'Premium watercraft inventory placeholder',
     features: ['Boarding ladder', 'Ski mode', 'Bluetooth audio', 'Trailer available'],
     description:
       'A strong family lake setup with wake-focused hardware, clean hours, and the option to pair it with a trailer.',
@@ -135,9 +132,8 @@ export const inventory: InventoryItem[] = [
     vin: 'JKARFCB18NB500063',
     availability: 'Ready for pickup',
     location: 'Pre-owned row',
-    image:
-      'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Off-road vehicle staged on a rugged road',
+    image: '',
+    imageAlt: 'Premium side-by-side inventory placeholder',
     features: ['Four seats', 'Audio roof', 'Full windshield', 'Fresh belt inspection'],
     description:
       'A clean four-seat trail rig with useful accessories and enough room for the whole crew.',

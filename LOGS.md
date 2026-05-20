@@ -115,6 +115,13 @@ Command run:
 ```bash
 npm run build
 npm run lint
+Start-Process -WindowStyle Hidden -FilePath npm.cmd -ArgumentList 'run','dev','--','--host','127.0.0.1','--port','5173'
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Side-by-Side'
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory/2025-polaris-rzr-xp-1000
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory/not-a-real-unit
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/not-a-real-page
 ```
 
 Issue:
@@ -225,3 +232,98 @@ Verification:
 Manual note:
 
 Interactive lead-form validation/success and CTA intent behavior should still receive one real browser pass before deployment because Browser/Playwright/jsdom tooling was not available in the current environment without adding dependencies.
+
+## 2026-05-20 - Dark Premium Visual Polish
+
+Command run:
+
+```bash
+npm run build
+npm run lint
+```
+
+Issue:
+
+The previous visual system was functional but still too light, clean, and generic for the requested premium rugged powersports direction.
+
+Cause:
+
+Most surfaces still used white/light Tailwind defaults, flat buttons, generic retail-card styling, and a terrain-first hero image.
+
+Fix:
+
+Updated `DESIGN.md` with a dark premium visual contract. Shifted the app baseline to black/graphite/asphalt surfaces, added amber accents, upgraded buttons, restyled cards/panels/forms/filters, replaced the hero with vehicle-forward imagery, added CSS-only cinematic depth, and tightened dealership-specific copy.
+
+Verification:
+
+`npm run build` passed. `npm run lint` passed. Route smoke checks returned HTTP 200 for Home, SRP, category-query SRP, valid VDP, invalid VDP, and unknown site route.
+
+## 2026-05-20 - Signature Ride Finder Polish
+
+Command run:
+
+```bash
+npm run lint
+npm run build
+Start-Process -WindowStyle Hidden -FilePath npm.cmd -ArgumentList 'run','dev','--','--host','127.0.0.1','--port','5173'
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Side-by-Side&usage=Low%20hours'
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Motorcycle&usage=Low%20mileage'
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Watercraft'
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=ATV&usage=Low%20hours'
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?condition=New&sort=year-desc'
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory/2025-polaris-rzr-xp-1000
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/not-a-real-page
+Stop-Process -Id 21904 -Force
+```
+
+Issue:
+
+The Home page needed one memorable but controlled signature frontend moment before deployment.
+
+Cause:
+
+The dark premium pass was deploy-safe, but the prototype could still use a more custom product-relevant bridge from brand story into inventory discovery.
+
+Fix:
+
+Added a `RideFinder` Home component between category browsing and featured inventory. The section uses real links into supported SRP query params, an existing powersports inventory image, dealership-specific microcopy, and CSS-only terrain depth/glow helpers.
+
+Verification:
+
+`npm run lint` passed. `npm run build` passed. HTTP smoke checks returned 200 for Home, SRP, all Ride Finder query targets, a valid VDP, and unknown site route. The local dev server was stopped after checks.
+
+## 2026-05-20 - Image Cleanup Correction
+
+Command run:
+
+```bash
+npm run lint
+npm run build
+Start-Process -WindowStyle Hidden -FilePath npm.cmd -ArgumentList 'run','dev','--','--host','127.0.0.1','--port','5173'
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Side-by-Side&usage=Low%20hours'
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Motorcycle&usage=Low%20mileage'
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Watercraft'
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory/2025-polaris-rzr-xp-1000
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/not-a-real-page
+Stop-Process -Id 36608 -Force
+```
+
+Issue:
+
+Several inventory image URLs were visually mismatched with powersports inventory, including clearly non-powersports stock imagery.
+
+Cause:
+
+Placeholder remote imagery was acceptable for the first prototype pass but weakened the polished dealership presentation.
+
+Fix:
+
+Converted mismatched non-powersports inventory images to category-specific premium dark placeholders in SRP cards and VDP media. Kept matching motorcycle imagery, lazy-loaded non-hero inventory card photos, tightened localized metadata contrast, and slightly reduced Ride Finder vertical height.
+
+Verification:
+
+`npm run lint` passed. `npm run build` passed. HTTP smoke checks returned 200 for Home, SRP, Ride Finder query targets, a valid VDP, and unknown site route. The local dev server was stopped after checks.

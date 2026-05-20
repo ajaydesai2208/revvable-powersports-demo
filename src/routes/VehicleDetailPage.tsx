@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { LeadForm } from '../components/inventory/LeadForm'
 import type { InquiryType } from '../components/inventory/LeadForm'
+import { CategoryMediaPlaceholder } from '../components/inventory/CategoryMediaPlaceholder'
 import { VehicleSpecs } from '../components/inventory/VehicleSpecs'
 import { InventoryGrid } from '../components/inventory/InventoryGrid'
 import { Badge } from '../components/ui/Badge'
@@ -18,7 +19,7 @@ export function VehicleDetailPage() {
 
   if (!item) {
     return (
-      <section className="bg-stone-50 py-16">
+      <section className="bg-black py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <EmptyState
             title="That unit is not in current inventory"
@@ -40,17 +41,21 @@ export function VehicleDetailPage() {
   }
 
   return (
-    <section className="bg-stone-50">
+    <section className="bg-black">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <Link className="inline-flex items-center gap-2 text-sm font-semibold text-stone-600 hover:text-orange-700" to="/inventory">
+        <Link className="inline-flex items-center gap-2 text-sm font-semibold text-stone-300 hover:text-amber-300" to="/inventory">
           <ArrowLeft size={17} aria-hidden="true" />
           Back to inventory
         </Link>
 
         <div className="mt-6 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <div className="aspect-[16/11] overflow-hidden bg-stone-200">
-              <img className="h-full w-full object-cover" src={item.image} alt={item.imageAlt} />
+            <div className="premium-panel aspect-[16/11] overflow-hidden p-1">
+              {item.image ? (
+                <img className="h-full w-full object-cover" src={item.image} alt={item.imageAlt} />
+              ) : (
+                <CategoryMediaPlaceholder category={item.category} label={vehicleName} />
+              )}
             </div>
           </div>
 
@@ -60,15 +65,15 @@ export function VehicleDetailPage() {
               <Badge tone={item.condition === 'New' ? 'orange' : 'light'}>{item.condition}</Badge>
             </div>
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.16em] text-orange-700">{item.category}</p>
-              <h1 className="mt-2 text-4xl font-black tracking-tight text-stone-950 md:text-5xl">{vehicleName}</h1>
-              <p className="mt-4 text-lg leading-8 text-stone-600">{item.description}</p>
+              <p className="text-sm font-bold uppercase tracking-[0.16em] text-amber-300">{item.category}</p>
+              <h1 className="mt-2 text-4xl font-black tracking-tight text-stone-50 md:text-5xl">{vehicleName}</h1>
+              <p className="mt-4 text-lg leading-8 text-stone-300">{item.description}</p>
             </div>
-            <div className="border-y border-stone-200 py-5">
-              <p className="text-sm font-semibold uppercase tracking-wide text-stone-500">Dealer price</p>
-              <p className="mt-1 text-4xl font-black text-stone-950">{formatPrice(item.price)}</p>
-              <p className="mt-2 text-sm text-stone-600">
-                Est. ${estimateMonthlyPayment(item.price).toLocaleString()}/mo for 72 months with placeholder assumptions.
+            <div className="border-y border-stone-800 py-5">
+              <p className="text-sm font-semibold uppercase tracking-wide text-stone-400">Dealer price</p>
+              <p className="mt-1 text-4xl font-black text-stone-50">{formatPrice(item.price)}</p>
+              <p className="mt-2 text-sm text-stone-300">
+                Est. ${estimateMonthlyPayment(item.price).toLocaleString()}/mo for 72 months. Tax, title, fees, and approval not included.
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -98,11 +103,11 @@ export function VehicleDetailPage() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_380px]">
           <div className="space-y-8">
             <VehicleSpecs item={item} />
-            <div className="border border-stone-200 bg-white p-6">
-              <h2 className="text-2xl font-semibold text-stone-950">Installed highlights</h2>
+            <div className="premium-panel p-6">
+              <h2 className="text-2xl font-semibold text-stone-50">Installed highlights</h2>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                 {item.features.map((feature) => (
-                  <li className="border-l-4 border-orange-600 bg-stone-50 px-4 py-3 text-sm font-semibold text-stone-800" key={feature}>
+                  <li className="border-l-4 border-amber-400 bg-black/40 px-4 py-3 text-sm font-semibold text-stone-200" key={feature}>
                     {feature}
                   </li>
                 ))}
@@ -116,12 +121,12 @@ export function VehicleDetailPage() {
               onInquiryTypeChange={setInquiryType}
               vehicleName={vehicleName}
             />
-            <div className="mt-4 border border-stone-200 bg-white p-5">
-              <h2 className="text-lg font-semibold text-stone-950">Dealer confidence</h2>
-              <ul className="mt-3 space-y-2 text-sm text-stone-700">
+            <div className="premium-panel mt-4 p-5">
+              <h2 className="text-lg font-semibold text-stone-50">Dealer confidence</h2>
+              <ul className="mt-3 space-y-2 text-sm text-stone-300">
                 <li>Trade-ins accepted for motorcycles, ATVs, side-by-sides, and watercraft.</li>
                 <li>Financing available with dealer follow-up.</li>
-                <li>Service team reviews units before pickup.</li>
+                <li>Service and accessory prep reviewed before pickup.</li>
                 <li>{item.availability} at {item.location}.</li>
               </ul>
             </div>
@@ -130,7 +135,7 @@ export function VehicleDetailPage() {
 
         {related.length ? (
           <div className="mt-14">
-            <h2 className="text-3xl font-semibold tracking-tight text-stone-950">Related {item.category.toLowerCase()} inventory</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-stone-50">Related {item.category.toLowerCase()} inventory</h2>
             <div className="mt-6">
               <InventoryGrid items={related} />
             </div>

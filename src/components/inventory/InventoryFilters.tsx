@@ -28,16 +28,16 @@ export function InventoryFilters({
   const makes = ['All', ...getMakes(inventory)]
 
   return (
-    <aside className="border border-stone-200 bg-white p-4 lg:sticky lg:top-24">
+    <aside className="premium-panel p-4 lg:sticky lg:top-24">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-stone-500">
+          <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-amber-300">
             <SlidersHorizontal size={16} aria-hidden="true" />
             Filters
           </p>
-          <p className="mt-1 text-sm text-stone-600">{resultCount} units available</p>
+          <p className="mt-1 text-sm text-stone-300">{resultCount} units available</p>
         </div>
-        <button className="inline-flex items-center gap-1 text-sm font-semibold text-orange-700" type="button" onClick={onClear}>
+        <button className="inline-flex items-center gap-1 text-sm font-semibold text-amber-300 hover:text-amber-200" type="button" onClick={onClear}>
           <X size={15} aria-hidden="true" />
           Clear
         </button>

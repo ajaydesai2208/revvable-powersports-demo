@@ -5,6 +5,57 @@
 - Run one manual browser pass at desktop and mobile widths before deployment.
 - Prepare Vercel deployment and final submission summary.
 
+## Image Cleanup Correction
+
+### Completed
+
+- Completed: Replaced clearly mismatched non-powersports inventory URLs with controlled premium dark category placeholders.
+- Completed: Added stable placeholder rendering for SRP cards and VDP hero media when an inventory item has no suitable powersports image.
+- Completed: Kept motorcycle inventory imagery where it already matches the unit category.
+- Completed: Lazy-loaded non-hero inventory card images.
+- Completed: Improved localized dark-theme metadata contrast in inventory cards, VDP price metadata, and vehicle specs.
+- Completed: Lightly tightened Ride Finder vertical height while preserving the section, query links, keyboard-accessible links, and CSS-only reduced-motion-compatible motion.
+- Completed: Verified `npm run lint`, `npm run build`, and HTTP smoke checks for required routes.
+
+### Still Worth Manual Review
+
+- Confirm category placeholders look intentional in SRP, featured inventory, related inventory, and VDP media at desktop and mobile widths.
+- Confirm the remaining motorcycle remote images load and crop well.
+
+## Signature Ride Finder Polish
+
+### Completed
+
+- Completed: Added a Home page Ride Finder / Terrain Drop section after the category strip and before featured inventory.
+- Completed: Added terrain buyer-intent links for Trail, Street, Water, Utility, and New Arrival using supported SRP query params.
+- Completed: Added a compact cinematic preview panel with existing powersports imagery, dealership signals, CSS-only depth, and reduced-motion compatibility.
+- Completed: Kept the feature frontend-only, dependency-free, and accessible through real links with visible focus states.
+- Completed: Verified `npm run lint`, `npm run build`, and HTTP smoke checks for the new inventory query routes.
+
+### Still Worth Manual Review
+
+- Confirm the Ride Finder visual crop, chip wrapping, and motion feel polished in a real browser at mobile and desktop widths.
+- Confirm the new section adds a memorable moment without pushing featured inventory too far down the Home page.
+
+## Dark Premium Polish
+
+### Completed
+
+- Completed: Updated `DESIGN.md` with the dark premium visual contract and token guidance.
+- Completed: Shifted the app baseline from light dealership UI to black/graphite/asphalt surfaces with amber accents.
+- Completed: Reworked primary and secondary buttons into sharper machine-like CTAs with visible focus states.
+- Completed: Replaced the terrain-only hero with vehicle-forward imagery and CSS-only cinematic depth.
+- Completed: Restyled hero proof points into dark dealer-status panels.
+- Completed: Darkened category strip, buyer tools, featured inventory, SRP, VDP, cards, filters, lead form, empty states, and footer.
+- Completed: Added premium panel treatments, amber edge accents, stronger card hover states, and dealership-specific buyer-tool copy.
+- Completed: Updated VDP payment language to include tax/title/fees and approval caveat.
+
+### Still Worth Manual Review
+
+- Confirm dark-theme contrast in real browser across Home, SRP, VDP, empty states, and lead success/errors.
+- Confirm remote imagery loads and crops well at desktop and mobile widths.
+- Confirm CSS-only motion feels subtle and reduced-motion fallback is acceptable.
+
 ## Final Review Fixes
 
 ### Completed Deploy Blockers
@@ -24,10 +75,6 @@
 
 ### Remaining Nice-To-Haves
 
-- Replace or adjust the Home hero image so powersports inventory is visible, not just generic terrain.
-  - Smallest fix: use a vehicle-forward trail/showroom image and keep the full-bleed treatment.
-- Restyle the hero proof cards so they feel dealership-specific instead of SaaS feature tiles.
-  - Smallest fix: turn them into a compact "Today at Summit Ridge" availability/status rail.
 - Strengthen CTA hierarchy.
   - Smallest fix: keep one clear primary action per context and make VDP secondary actions visually quieter.
 - Improve mobile buyer flow.

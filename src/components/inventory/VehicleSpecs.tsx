@@ -19,11 +19,11 @@ export function VehicleSpecs({ item }: VehicleSpecsProps) {
   ]
 
   return (
-    <dl className="grid gap-px overflow-hidden border border-stone-200 bg-stone-200 sm:grid-cols-2">
+    <dl className="grid gap-px overflow-hidden border border-stone-700 bg-stone-800 sm:grid-cols-2">
       {specs.map(([label, value]) => (
-        <div className="bg-white p-4" key={label}>
-          <dt className="text-xs font-bold uppercase tracking-[0.14em] text-stone-500">{label}</dt>
-          <dd className="mt-1 font-semibold text-stone-950">{value}</dd>
+        <div className="bg-stone-950 p-4" key={label}>
+          <dt className="text-xs font-bold uppercase tracking-[0.14em] text-stone-400">{label}</dt>
+          <dd className="mt-1 font-semibold text-stone-100">{value}</dd>
         </div>
       ))}
     </dl>

@@ -76,7 +76,7 @@ export function InventoryPage() {
   ].filter(Boolean)
 
   return (
-    <section className="bg-stone-50 py-10 md:py-14">
+    <section className="bg-black py-10 md:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
           <InventoryFilters
@@ -89,11 +89,11 @@ export function InventoryPage() {
             onSortChange={updateSort}
           />
           <div>
-            <div className="mb-6 flex flex-col justify-between gap-4 border-b border-stone-200 pb-5 md:flex-row md:items-end">
+            <div className="mb-6 flex flex-col justify-between gap-4 border-b border-stone-800 pb-5 md:flex-row md:items-end">
               <div>
-                <p className="text-sm font-bold uppercase tracking-[0.16em] text-orange-700">Inventory</p>
-                <h1 className="mt-2 text-4xl font-black tracking-tight text-stone-950 md:text-5xl">Shop ready units</h1>
-                <p className="mt-3 max-w-2xl text-stone-600">
+                <p className="text-sm font-bold uppercase tracking-[0.16em] text-amber-300">Inventory</p>
+                <h1 className="mt-2 text-4xl font-black tracking-tight text-stone-50 md:text-5xl">Shop ready units</h1>
+                <p className="mt-3 max-w-2xl text-stone-300">
                   Filter motorcycles, ATVs, side-by-sides, and watercraft with buyer details that matter.
                 </p>
               </div>
@@ -105,7 +105,7 @@ export function InventoryPage() {
             {activeFilters.length ? (
               <div className="mb-5 flex flex-wrap gap-2">
                 {activeFilters.map((filter) => (
-                  <span className="rounded-sm bg-stone-200 px-3 py-1 text-sm font-semibold text-stone-700" key={filter}>
+                  <span className="rounded-sm border border-amber-400/25 bg-amber-400/10 px-3 py-1 text-sm font-semibold text-amber-100" key={filter}>
                     {filter}
                   </span>
                 ))}
@@ -115,9 +115,9 @@ export function InventoryPage() {
             {filteredInventory.length ? (
               <>
                 <InventoryGrid items={filteredInventory} />
-                <div className="mt-6 border border-stone-200 bg-white p-5">
-                  <h2 className="text-xl font-semibold text-stone-950">Have a trade or finance question?</h2>
-                  <p className="mt-2 text-stone-600">
+                <div className="premium-panel mt-6 p-5">
+                  <h2 className="text-xl font-semibold text-stone-50">Have a trade or finance question?</h2>
+                  <p className="mt-2 text-stone-300">
                     Send the stock number you like and the dealer can attach trade details, payment estimates, and pickup timing.
                   </p>
                 </div>

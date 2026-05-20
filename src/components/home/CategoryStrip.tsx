@@ -9,12 +9,13 @@ const categories = [
 
 export function CategoryStrip() {
   return (
-    <section className="border-y border-stone-200 bg-white">
-      <div className="mx-auto grid max-w-7xl divide-y divide-stone-200 px-4 sm:px-6 md:grid-cols-4 md:divide-x md:divide-y-0 lg:px-8">
+    <section className="border-y border-amber-400/15 bg-stone-950">
+      <div className="mx-auto grid max-w-7xl divide-y divide-stone-800 px-4 sm:px-6 md:grid-cols-4 md:divide-x md:divide-y-0 lg:px-8">
         {categories.map(([title, category, detail]) => (
-          <Link className="group block py-6 md:px-5" to={`/inventory?category=${encodeURIComponent(category)}`} key={title}>
-            <p className="text-lg font-semibold text-stone-950 group-hover:text-orange-700">{title}</p>
-            <p className="mt-2 text-sm leading-6 text-stone-600">{detail}</p>
+          <Link className="group block py-6 transition hover:-translate-y-0.5 hover:bg-white/[0.03] md:px-5" to={`/inventory?category=${encodeURIComponent(category)}`} key={title}>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-300">{category}</p>
+            <p className="mt-2 text-lg font-semibold text-stone-50 group-hover:text-amber-200">{title}</p>
+            <p className="mt-2 text-sm leading-6 text-stone-400">{detail}</p>
           </Link>
         ))}
       </div>

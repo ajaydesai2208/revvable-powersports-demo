@@ -13,10 +13,11 @@ type ButtonProps = {
 }
 
 const variants = {
-  primary: 'bg-orange-600 text-white hover:bg-orange-500 focus-visible:outline-orange-700',
+  primary:
+    'border border-amber-400/70 bg-gradient-to-b from-amber-500 to-orange-700 text-stone-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_14px_34px_rgba(234,88,12,0.24)] hover:-translate-y-0.5 hover:from-amber-400 hover:to-orange-600 focus-visible:outline-amber-300',
   secondary:
-    'border border-stone-300 bg-white text-stone-950 hover:border-stone-500 hover:bg-stone-50 focus-visible:outline-stone-700',
-  ghost: 'text-stone-950 hover:bg-stone-100 focus-visible:outline-stone-700',
+    'border border-stone-600/80 bg-stone-950/80 text-stone-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:-translate-y-0.5 hover:border-amber-400/70 hover:bg-stone-900 focus-visible:outline-amber-300',
+  ghost: 'text-stone-100 hover:bg-white/10 focus-visible:outline-amber-300',
 }
 
 export function Button({
