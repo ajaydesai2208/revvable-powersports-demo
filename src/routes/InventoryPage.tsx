@@ -48,6 +48,16 @@ function buildSearchParams(filters: Filters, sort: InventorySort) {
   return params
 }
 
+function getInventoryContext(filters: Filters) {
+  if (filters.category === 'Side-by-Side' && filters.usage === 'Low hours') return 'Showing low-hour side-by-sides for trail-focused buyers.'
+  if (filters.category === 'Motorcycle' && filters.usage === 'Low mileage') return 'Showing low-mileage motorcycles for street and adventure buyers.'
+  if (filters.category === 'Watercraft') return 'Showing watercraft inventory for lake-ready weekends.'
+  if (filters.category === 'ATV' && filters.usage === 'Low hours') return 'Showing low-hour ATVs for utility, hunting access, and trail days.'
+  if (filters.condition === 'New') return 'Showing new and inbound-ready inventory first.'
+  if (filters.category !== 'All') return `Showing ${filters.category.toLowerCase()} inventory with your selected buyer filters.`
+  return 'Showing inventory matched to your selected buyer filters.'
+}
+
 export function InventoryPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   const filters = useMemo(() => filtersFromParams(searchParams), [searchParams])
@@ -74,6 +84,8 @@ export function InventoryPage() {
     filters.maxPrice < defaultFilters.maxPrice ? `Under $${filters.maxPrice.toLocaleString()}` : null,
     filters.usage !== 'All' ? filters.usage : null,
   ].filter(Boolean)
+
+  const inventoryContext = activeFilters.length ? getInventoryContext(filters) : null
 
   return (
     <section className="bg-black py-10 md:py-14">
@@ -103,12 +115,15 @@ export function InventoryPage() {
             </div>
 
             {activeFilters.length ? (
-              <div className="mb-5 flex flex-wrap gap-2">
-                {activeFilters.map((filter) => (
-                  <span className="rounded-sm border border-amber-400/25 bg-amber-400/10 px-3 py-1 text-sm font-semibold text-amber-100" key={filter}>
-                    {filter}
-                  </span>
-                ))}
+              <div className="mb-5 rounded-2xl border border-amber-300/16 bg-amber-300/[0.06] p-4">
+                <p className="text-sm font-semibold text-stone-200">{inventoryContext}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {activeFilters.map((filter) => (
+                    <span className="rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1 text-sm font-semibold text-amber-100" key={filter}>
+                      {filter}
+                    </span>
+                  ))}
+                </div>
               </div>
             ) : null}
 

@@ -18,3 +18,5 @@
 - Verified the signature polish with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, all Ride Finder query targets, a valid VDP, and `/not-a-real-page`.
 - Completed a small image cleanup correction pass: replaced mismatched non-powersports inventory URLs with category-specific premium placeholders, lazy-loaded inventory card photos, improved localized metadata contrast, and tightened Ride Finder height without changing behavior.
 - Re-verified with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, Ride Finder query targets, a valid VDP, and `/not-a-real-page`.
+- Implemented Signature Polish V2 using the generated mockup as directional reference: integrated the Hero-to-RideFinder flow, redesigned RideFinder as a rounded terrain-selection panel, added CSS-only depth layers, softened shared surfaces, improved placeholder/card treatment, and added SRP context copy for filtered RideFinder arrivals.
+- Verified Signature Polish V2 with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, RideFinder query targets, valid and invalid VDP routes, and `/not-a-real-page`.

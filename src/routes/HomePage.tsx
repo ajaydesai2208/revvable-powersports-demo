@@ -10,9 +10,11 @@ import { SectionHeader } from '../components/ui/SectionHeader'
 export function HomePage() {
   return (
     <>
-      <Hero />
-      <CategoryStrip />
-      <RideFinder />
+      <div className="home-depth-flow">
+        <Hero />
+        <CategoryStrip />
+        <RideFinder />
+      </div>
       <FeaturedInventory items={featuredInventory} />
       <section className="section-reveal bg-stone-950 py-16" id="buyer-tools">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">

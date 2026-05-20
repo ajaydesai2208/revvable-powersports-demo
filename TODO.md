@@ -5,6 +5,25 @@
 - Run one manual browser pass at desktop and mobile widths before deployment.
 - Prepare Vercel deployment and final submission summary.
 
+## Signature Polish V2
+
+### Completed
+
+- Completed: Used the generated mockup as visual direction without copying its navigation or adding new scope.
+- Completed: Integrated Hero, CategoryStrip, and RideFinder into a shared Home depth flow with amber/graphite blending.
+- Completed: Refined Hero atmosphere with stronger cinematic glow, depth overlay, and softer transition into the Home flow.
+- Completed: Redesigned RideFinder into the signature rounded terrain-selection panel with real SRP query links, a decorative step rail, terrain cards, and a buyer-facing flow.
+- Completed: Added CSS-only depth layers and progressive view-timeline enhancement with reduced-motion fallback.
+- Completed: Softened buttons, badges, category bridge, inventory cards, VDP media, and premium placeholder surfaces.
+- Completed: Added a small SRP active-filter context line for RideFinder handoffs.
+- Completed: Verified `npm run lint`, `npm run build`, and HTTP smoke checks for required routes.
+
+### Still Worth Manual Review
+
+- Confirm the mockup-inspired Home composition feels premium at desktop and does not crowd mobile.
+- Confirm RideFinder terrain cards have enough image/placeholder contrast in real browser rendering.
+- Confirm the optional view-timeline enhancement feels subtle in supported browsers.
+
 ## Image Cleanup Correction
 
 ### Completed

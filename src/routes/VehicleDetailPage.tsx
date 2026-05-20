@@ -50,9 +50,9 @@ export function VehicleDetailPage() {
 
         <div className="mt-6 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <div className="premium-panel aspect-[16/11] overflow-hidden p-1">
+            <div className="premium-panel aspect-[16/11] overflow-hidden rounded-3xl p-1.5">
               {item.image ? (
-                <img className="h-full w-full object-cover" src={item.image} alt={item.imageAlt} />
+                <img className="h-full w-full rounded-[1.35rem] object-cover" src={item.image} alt={item.imageAlt} />
               ) : (
                 <CategoryMediaPlaceholder category={item.category} label={vehicleName} />
               )}

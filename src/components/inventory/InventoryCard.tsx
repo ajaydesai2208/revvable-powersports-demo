@@ -11,7 +11,7 @@ type InventoryCardProps = {
 
 export function InventoryCard({ item }: InventoryCardProps) {
   return (
-    <article className="group relative overflow-hidden border border-stone-700 bg-stone-950 transition duration-300 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-amber-500 before:via-orange-600 before:to-lime-400 hover:-translate-y-1 hover:border-amber-400/60 hover:shadow-[0_24px_80px_rgba(0,0,0,0.44)]">
+    <article className="group relative overflow-hidden rounded-3xl border border-stone-700/80 bg-stone-950 transition duration-300 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-amber-500 before:via-orange-600 before:to-amber-300 hover:-translate-y-1 hover:border-amber-300/60 hover:shadow-[0_28px_90px_rgba(0,0,0,0.44),0_0_46px_rgba(245,158,11,0.12)]">
       <Link to={`/inventory/${item.id}`} aria-label={`View details for ${item.year} ${item.make} ${item.model}`}>
         <div className="aspect-[4/3] overflow-hidden bg-stone-900">
           {item.image ? (

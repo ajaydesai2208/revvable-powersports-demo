@@ -1,140 +1,156 @@
-import { ArrowRight, Compass, Gauge, MapPinned, Sparkles } from 'lucide-react'
+import { ArrowRight, BadgeDollarSign, Compass, MapPinned, ShieldCheck, Wrench } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { inventory } from '../../data/inventory'
+import type { VehicleCategory } from '../../types/inventory'
+import { CategoryMediaPlaceholder } from '../inventory/CategoryMediaPlaceholder'
 import { Button } from '../ui/Button'
 
-const terrainLinks = [
+type TerrainCard = {
+  label: string
+  category: VehicleCategory
+  detail: string
+  to: string
+}
+
+const terrainCards: TerrainCard[] = [
   {
-    label: 'Trail',
-    detail: 'Crew cab and sport machines with low-hour signals.',
-    to: '/inventory?category=Side-by-Side&usage=Low%20hours',
-  },
-  {
-    label: 'Street',
-    detail: 'Street-legal weekend rides and light adventure miles.',
+    label: 'Motorcycles',
+    category: 'Motorcycle',
+    detail: 'On-road, off-road, and everything in between.',
     to: '/inventory?category=Motorcycle&usage=Low%20mileage',
   },
   {
-    label: 'Water',
-    detail: 'Lake-ready personal watercraft and trailer planning.',
-    to: '/inventory?category=Watercraft',
-  },
-  {
-    label: 'Utility',
-    detail: 'ATVs for property work, hunting access, and trail days.',
+    label: 'ATVs',
+    category: 'ATV',
+    detail: 'Work harder, explore farther, and reach the back line.',
     to: '/inventory?category=ATV&usage=Low%20hours',
   },
   {
-    label: 'New Arrival',
-    detail: 'Fresh units first, sorted by newest model year.',
-    to: '/inventory?condition=New&sort=year-desc',
+    label: 'Side-by-Sides',
+    category: 'Side-by-Side',
+    detail: 'Crew machines and sport rigs for bigger terrain.',
+    to: '/inventory?category=Side-by-Side&usage=Low%20hours',
+  },
+  {
+    label: 'Watercraft',
+    category: 'Watercraft',
+    detail: 'Lake-ready units for dock days and weekend runs.',
+    to: '/inventory?category=Watercraft',
   },
 ]
 
-const dealerSignals = [
-  ['Route', 'Terrain match'],
-  ['Intent', 'Finance or trade ready'],
-  ['Pickup', 'Showroom timing'],
+const trustSignals = [
+  { title: 'Premium brands', detail: 'The right names in powersports.', Icon: ShieldCheck },
+  { title: 'Expert service', detail: 'Factory-trained and adventure-ready.', Icon: Wrench },
+  { title: 'Trusted locally', detail: 'Real showroom support before pickup.', Icon: MapPinned },
+  { title: 'Financing options', detail: 'Flexible paths for serious buyers.', Icon: BadgeDollarSign },
 ]
 
-const image = inventory.find((item) => item.id === '2024-yamaha-tenere-700') ?? inventory[0]
+function getCategoryImage(category: VehicleCategory) {
+  return inventory.find((item) => item.category === category && item.image)
+}
 
 export function RideFinder() {
   return (
-    <section className="section-reveal overflow-hidden border-b border-amber-400/10 bg-black py-14 sm:py-16">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:px-8">
-        <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-amber-200">
-            <Sparkles size={14} aria-hidden="true" />
-            Ride Finder
-          </div>
-          <h2 className="mt-5 max-w-2xl text-4xl font-black tracking-tight text-stone-50 sm:text-5xl">
-            Drop into the terrain you actually ride.
-          </h2>
-          <p className="mt-5 max-w-xl text-base leading-7 text-stone-300">
-            Pick a surface and Summit Ridge routes you into ready units with the right category, usage signal, and buying path already applied.
-          </p>
+    <section className="ridefinder-stage relative z-20 -mt-2 px-4 pb-12 pt-8 sm:px-6 sm:pb-16 lg:px-8">
+      <div className="terrain-panel mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-amber-200/14 bg-stone-950/82 shadow-[0_34px_100px_rgba(0,0,0,0.52)] backdrop-blur">
+        <div className="terrain-layer terrain-layer-a" aria-hidden="true" />
+        <div className="terrain-layer terrain-layer-b" aria-hidden="true" />
 
-          <div className="mt-7 grid gap-3" aria-label="Ride finder terrain shortcuts">
-            {terrainLinks.map((terrain) => (
-              <Link
-                className="group flex min-h-14 items-center justify-between gap-4 rounded-md border border-stone-700/80 bg-stone-950/72 px-4 py-3 text-left transition hover:-translate-y-0.5 hover:border-amber-400/70 hover:bg-stone-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
-                key={terrain.label}
-                to={terrain.to}
-              >
-                <span>
-                  <span className="block text-sm font-bold uppercase tracking-[0.16em] text-amber-200">{terrain.label}</span>
-                  <span className="mt-1 block text-sm leading-5 text-stone-400 group-hover:text-stone-200">{terrain.detail}</span>
-                </span>
-                <ArrowRight className="shrink-0 text-stone-500 transition group-hover:translate-x-1 group-hover:text-amber-200" size={18} aria-hidden="true" />
-              </Link>
-            ))}
+        <div className="relative grid gap-8 p-5 sm:p-7 lg:grid-cols-[170px_1fr] lg:p-10">
+          <div>
+            <div className="flex items-center gap-3">
+              <div className="rounded-2xl border border-amber-300/30 bg-amber-300/10 p-2 text-amber-200">
+                <Compass size={22} aria-hidden="true" />
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.34em] text-stone-100">RideFinder</p>
+                <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-amber-300">Terrain first</p>
+              </div>
+            </div>
+
+            <ol className="mt-8 hidden space-y-6 lg:block" aria-label="Ride Finder flow">
+              {['Terrain', 'Preferences', 'Results'].map((step, index) => (
+                <li className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em]" key={step}>
+                  <span
+                    className={`flex h-8 w-8 items-center justify-center rounded-full border ${
+                      index === 0 ? 'border-amber-300 bg-amber-300/12 text-amber-200' : 'border-stone-600 text-stone-400'
+                    }`}
+                  >
+                    0{index + 1}
+                  </span>
+                  <span className={index === 0 ? 'text-amber-200' : 'text-stone-500'}>{step}</span>
+                </li>
+              ))}
+            </ol>
           </div>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button to="/inventory">
-              Find your ride
-              <ArrowRight size={18} aria-hidden="true" />
-            </Button>
-            <Link
-              className="inline-flex min-h-11 items-center text-sm font-semibold text-stone-300 transition hover:text-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
-              to="/#buyer-tools"
-            >
-              Prep financing and trade
-            </Link>
+          <div>
+            <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">Step 1 of 3</p>
+                <h2 className="mt-2 text-3xl font-black tracking-[0.08em] text-stone-50 sm:text-4xl">Where will you ride?</h2>
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-300">
+                  Choose the terrain first. We will route you to matching inventory with finance, trade, and pickup paths still close by.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button to="/inventory" variant="secondary">
+                  View all inventory
+                  <ArrowRight size={18} aria-hidden="true" />
+                </Button>
+                <Link
+                  className="inline-flex min-h-11 items-center justify-center rounded-xl border border-amber-300/25 bg-amber-300/10 px-4 py-2 text-sm font-bold text-amber-100 transition hover:-translate-y-0.5 hover:border-amber-200 hover:bg-amber-300/16 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+                  to="/inventory?condition=New&sort=year-desc"
+                >
+                  New arrivals
+                </Link>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {terrainCards.map((card) => {
+                const image = getCategoryImage(card.category)
+
+                return (
+                  <Link
+                    className="terrain-card group relative min-h-[260px] overflow-hidden rounded-3xl border border-stone-600/70 bg-stone-950 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] transition duration-300 hover:-translate-y-1 hover:border-amber-300/70 hover:shadow-[0_24px_70px_rgba(245,158,11,0.16)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+                    key={card.label}
+                    to={card.to}
+                  >
+                    <div className="absolute inset-0">
+                      {image ? (
+                        <img className="h-full w-full object-cover opacity-70 transition duration-500 group-hover:scale-105" src={image.image} alt={image.imageAlt} loading="lazy" />
+                      ) : (
+                        <CategoryMediaPlaceholder category={card.category} label={card.label} />
+                      )}
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.84)),radial-gradient(circle_at_20%_12%,rgba(245,158,11,0.22),transparent_12rem)]" />
+                    </div>
+                    <div className="relative flex min-h-[260px] flex-col justify-end p-5">
+                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-200">{card.category}</p>
+                      <h3 className="mt-2 text-2xl font-black tracking-[0.08em] text-stone-50">{card.label}</h3>
+                      <p className="mt-2 text-sm leading-5 text-stone-300">{card.detail}</p>
+                      <span className="mt-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-stone-500/70 bg-black/48 text-amber-100 transition group-hover:translate-x-1 group-hover:border-amber-300 group-hover:bg-amber-400 group-hover:text-stone-950">
+                        <ArrowRight size={19} aria-hidden="true" />
+                      </span>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
           </div>
         </div>
 
-        <div className="terrain-depth premium-panel relative min-h-[400px] overflow-hidden p-4 sm:min-h-[460px] sm:p-6" aria-label="Terrain-guided inventory preview">
-          <div className="terrain-glow absolute inset-0" aria-hidden="true" />
-          <div className="absolute inset-x-6 top-6 z-10 flex flex-wrap gap-2" aria-hidden="true">
-            {['Trail fit', 'Low hours', 'Trade path'].map((label) => (
-              <span className="terrain-float rounded-full border border-amber-300/25 bg-black/50 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-amber-100 backdrop-blur" key={label}>
-                {label}
-              </span>
-            ))}
-          </div>
-
-          <div className="relative z-0 h-full overflow-hidden rounded-md border border-stone-700/70 bg-stone-950">
-            <img className="h-full w-full object-cover opacity-72 mix-blend-screen" src={image.image} alt={image.imageAlt} loading="lazy" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_66%_22%,rgba(245,158,11,0.32),transparent_16rem),linear-gradient(110deg,rgba(0,0,0,0.92),rgba(0,0,0,0.48)_48%,rgba(0,0,0,0.86)),linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.84))]" />
-            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-7">
-              <div className="max-w-md">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-200">Terrain drop</p>
-                <h3 className="mt-3 text-3xl font-black tracking-tight text-stone-50 sm:text-4xl">A guided jump from intent to inventory.</h3>
-                <p className="mt-3 text-sm leading-6 text-stone-300">
-                  The section turns buyer language into filtered SRP paths without pretending there is backend matching.
-                </p>
-              </div>
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                {dealerSignals.map(([label, value]) => (
-                  <div className="rounded-md border border-white/10 bg-black/45 p-3 backdrop-blur" key={label}>
-                    <p className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-stone-400">{label}</p>
-                    <p className="mt-1 text-sm font-semibold text-stone-50">{value}</p>
-                  </div>
-                ))}
+        <div className="relative grid border-t border-stone-700/70 bg-black/30 sm:grid-cols-2 lg:grid-cols-4">
+          {trustSignals.map(({ title, detail, Icon }) => (
+            <div className="flex gap-3 border-b border-stone-700/60 px-5 py-4 last:border-b-0 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0" key={title}>
+              <Icon className="mt-1 shrink-0 text-amber-300" size={20} aria-hidden="true" />
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-stone-100">{title}</p>
+                <p className="mt-1 text-sm text-stone-400">{detail}</p>
               </div>
             </div>
-          </div>
-
-          <div className="absolute right-5 top-24 z-20 hidden max-w-44 rounded-md border border-stone-600/70 bg-black/58 p-3 backdrop-blur md:block" aria-hidden="true">
-            <div className="flex items-center gap-2 text-amber-200">
-              <Compass size={16} />
-              <span className="text-xs font-bold uppercase tracking-[0.14em]">Match lane</span>
-            </div>
-            <p className="mt-2 text-sm leading-5 text-stone-200">Terrain, usage, and pickup timing stay connected.</p>
-          </div>
-
-          <div className="absolute bottom-10 right-5 z-20 hidden rounded-md border border-amber-300/20 bg-amber-300/12 p-3 text-stone-100 backdrop-blur md:block" aria-hidden="true">
-            <div className="flex items-center gap-2">
-              <Gauge size={16} />
-              <span className="text-sm font-semibold">Ready unit path</span>
-            </div>
-            <div className="mt-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-amber-100">
-              <MapPinned size={14} />
-              Showroom to trail
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -327,3 +327,38 @@ Converted mismatched non-powersports inventory images to category-specific premi
 Verification:
 
 `npm run lint` passed. `npm run build` passed. HTTP smoke checks returned 200 for Home, SRP, Ride Finder query targets, a valid VDP, and unknown site route. The local dev server was stopped after checks.
+
+## 2026-05-20 - Signature Polish V2
+
+Command run:
+
+```bash
+npm run lint
+npm run build
+Start-Process -WindowStyle Hidden -FilePath npm.cmd -ArgumentList 'run','dev','--','--host','127.0.0.1','--port','5173'
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Side-by-Side&usage=Low%20hours'
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Motorcycle&usage=Low%20mileage'
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Watercraft'
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory/2025-polaris-rzr-xp-1000
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory/not-a-real-unit
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/not-a-real-page
+Stop-Process -Id 45172 -Force
+```
+
+Issue:
+
+The dark premium prototype still felt somewhat flat and static after the first RideFinder and image cleanup passes.
+
+Cause:
+
+The top Home sections were still separate dark bands, RideFinder read like a standard content section, and shared surfaces retained harder rectangular edges.
+
+Fix:
+
+Used the generated mockup as visual direction. Integrated Hero, CategoryStrip, and RideFinder into a shared depth flow; redesigned RideFinder as a large rounded terrain-selection panel; added CSS-only depth layers and optional view-timeline enhancement; softened buttons, badges, cards, VDP media, and placeholders; and added buyer-facing SRP context copy for filtered RideFinder arrivals.
+
+Verification:
+
+The first lint/build run caught one unused icon import in `RideFinder`, which was removed. `npm run lint` passed. `npm run build` passed. HTTP smoke checks returned 200 for Home, SRP, RideFinder query targets, a valid VDP, invalid VDP recovery, and unknown site route. The local dev server was stopped after checks.

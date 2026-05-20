@@ -10,16 +10,16 @@ const proofPoints = [
 
 export function Hero() {
   return (
-    <section className="section-reveal relative overflow-hidden bg-black text-white">
+    <section className="section-reveal hero-depth relative overflow-hidden bg-black text-white">
       <div className="absolute inset-0">
         <img
-          className="hero-media h-full w-full object-cover opacity-70"
+          className="hero-media h-full w-full object-cover opacity-75"
           src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?auto=format&fit=crop&w=1800&q=82"
           alt="Dual-sport motorcycle staged near a trailhead"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_42%,rgba(245,158,11,0.28),transparent_20rem),linear-gradient(90deg,rgba(0,0,0,0.94),rgba(0,0,0,0.74)_46%,rgba(0,0,0,0.24)),linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.78))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_44%,rgba(245,158,11,0.34),transparent_20rem),radial-gradient(circle_at_22%_36%,rgba(245,158,11,0.18),transparent_24rem),linear-gradient(90deg,rgba(0,0,0,0.95),rgba(0,0,0,0.75)_43%,rgba(0,0,0,0.22)),linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.88))]" />
       </div>
-      <div className="relative mx-auto grid min-h-[680px] max-w-7xl content-end gap-10 px-4 pb-10 pt-28 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+      <div className="relative mx-auto grid min-h-[680px] max-w-7xl content-end gap-10 px-4 pb-16 pt-28 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
         <div className="max-w-3xl">
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-amber-300">Summit Ridge Powersports</p>
           <h1 className="mt-4 text-5xl font-black tracking-tight md:text-7xl">Trail-ready inventory. Straight dealer answers.</h1>
@@ -39,7 +39,7 @@ export function Hero() {
         </div>
         <div className="grid gap-3 self-end sm:grid-cols-3 lg:grid-cols-1" aria-label="Today at Summit Ridge">
           {proofPoints.map(({ title, detail, Icon }) => (
-            <div className="premium-panel p-4" key={title}>
+            <div className="premium-panel rounded-2xl p-4" key={title}>
               <div className="flex items-start gap-3">
                 {Icon ? <Icon className="mt-1 text-orange-300" size={19} aria-hidden="true" /> : null}
                 <div>
