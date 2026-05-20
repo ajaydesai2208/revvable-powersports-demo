@@ -20,3 +20,5 @@
 - Re-verified with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, Ride Finder query targets, a valid VDP, and `/not-a-real-page`.
 - Implemented Signature Polish V2 using the generated mockup as directional reference: integrated the Hero-to-RideFinder flow, redesigned RideFinder as a rounded terrain-selection panel, added CSS-only depth layers, softened shared surfaces, improved placeholder/card treatment, and added SRP context copy for filtered RideFinder arrivals.
 - Verified Signature Polish V2 with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, RideFinder query targets, valid and invalid VDP routes, and `/not-a-real-page`.
+- Stabilized the Home layout after the parallax experiment: removed negative-margin collisions and scroll-driven section transforms, then added a lightweight IntersectionObserver reveal system for Home sections, trust/service blocks, and inventory cards.
+- Verified the final smooth UX pass with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, RideFinder query targets, valid and invalid VDP routes, and `/not-a-real-page`.

@@ -4,6 +4,7 @@ import { inventory } from '../../data/inventory'
 import type { VehicleCategory } from '../../types/inventory'
 import { CategoryMediaPlaceholder } from '../inventory/CategoryMediaPlaceholder'
 import { Button } from '../ui/Button'
+import { RevealOnScroll } from '../ui/RevealOnScroll'
 
 type TerrainCard = {
   label: string
@@ -52,8 +53,9 @@ function getCategoryImage(category: VehicleCategory) {
 
 export function RideFinder() {
   return (
-    <section className="ridefinder-stage relative z-20 -mt-2 px-4 pb-12 pt-8 sm:px-6 sm:pb-16 lg:px-8">
-      <div className="terrain-panel mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-amber-200/14 bg-stone-950/82 shadow-[0_34px_100px_rgba(0,0,0,0.52)] backdrop-blur">
+    <section className="ridefinder-stage relative z-20 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+      <RevealOnScroll className="mx-auto max-w-7xl">
+        <div className="terrain-panel overflow-hidden rounded-[2rem] border border-amber-200/14 bg-stone-950/82 shadow-[0_34px_100px_rgba(0,0,0,0.52)] backdrop-blur">
         <div className="terrain-layer terrain-layer-a" aria-hidden="true" />
         <div className="terrain-layer terrain-layer-b" aria-hidden="true" />
 
@@ -91,7 +93,7 @@ export function RideFinder() {
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">Step 1 of 3</p>
                 <h2 className="mt-2 text-3xl font-black tracking-[0.08em] text-stone-50 sm:text-4xl">Where will you ride?</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-300">
-                  Choose the terrain first. We will route you to matching inventory with finance, trade, and pickup paths still close by.
+                  Choose a terrain card to open inventory with the right category and usage filters already applied.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -109,12 +111,14 @@ export function RideFinder() {
             </div>
 
             <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {terrainCards.map((card) => {
+              {terrainCards.map((card, index) => {
                 const image = getCategoryImage(card.category)
 
                 return (
                   <Link
-                    className="terrain-card group relative min-h-[260px] overflow-hidden rounded-3xl border border-stone-600/70 bg-stone-950 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] transition duration-300 hover:-translate-y-1 hover:border-amber-300/70 hover:shadow-[0_24px_70px_rgba(245,158,11,0.16)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+                    className={`terrain-card group relative min-h-[260px] overflow-hidden rounded-3xl border bg-stone-950 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] transition duration-300 hover:-translate-y-1 hover:border-amber-300/80 hover:shadow-[0_24px_70px_rgba(245,158,11,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 ${
+                      index === 0 ? 'terrain-card-primary border-amber-300/70' : 'border-stone-600/70'
+                    }`}
                     key={card.label}
                     to={card.to}
                   >
@@ -130,7 +134,8 @@ export function RideFinder() {
                       <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-200">{card.category}</p>
                       <h3 className="mt-2 text-2xl font-black tracking-[0.08em] text-stone-50">{card.label}</h3>
                       <p className="mt-2 text-sm leading-5 text-stone-300">{card.detail}</p>
-                      <span className="mt-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-stone-500/70 bg-black/48 text-amber-100 transition group-hover:translate-x-1 group-hover:border-amber-300 group-hover:bg-amber-400 group-hover:text-stone-950">
+                      <span className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-amber-200">Open filtered inventory</span>
+                      <span className="mt-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-stone-500/70 bg-black/48 text-amber-100 transition group-hover:translate-x-1 group-hover:border-amber-300 group-hover:bg-amber-400 group-hover:text-stone-950">
                         <ArrowRight size={19} aria-hidden="true" />
                       </span>
                     </div>
@@ -152,7 +157,8 @@ export function RideFinder() {
             </div>
           ))}
         </div>
-      </div>
+        </div>
+      </RevealOnScroll>
     </section>
   )
 }

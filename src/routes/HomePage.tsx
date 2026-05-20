@@ -5,6 +5,7 @@ import { Hero } from '../components/home/Hero'
 import { RideFinder } from '../components/home/RideFinder'
 import { TrustBar } from '../components/home/TrustBar'
 import { Button } from '../components/ui/Button'
+import { RevealOnScroll } from '../components/ui/RevealOnScroll'
 import { SectionHeader } from '../components/ui/SectionHeader'
 
 export function HomePage() {
@@ -16,24 +17,28 @@ export function HomePage() {
         <RideFinder />
       </div>
       <FeaturedInventory items={featuredInventory} />
-      <section className="section-reveal bg-stone-950 py-16" id="buyer-tools">
+      <section className="bg-stone-950 py-16" id="buyer-tools">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-          <SectionHeader
-            eyebrow="Buyer tools"
-            title="Get the numbers and the trade path before you load the trailer."
-            description="The prototype keeps the highest-intent dealership actions close to inventory: financing, trade value, contact, and pickup timing."
-          />
+          <RevealOnScroll>
+            <SectionHeader
+              eyebrow="Buyer tools"
+              title="Get the numbers and the trade path before you load the trailer."
+              description="The prototype keeps the highest-intent dealership actions close to inventory: financing, trade value, contact, and pickup timing."
+            />
+          </RevealOnScroll>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               ['Get pre-qualified', 'Estimate a payment path before you visit the showroom.'],
               ['Bring trade photos', 'Share payoff, mileage, and condition details before arrival.'],
               ['Reserve a stock number', 'Hold a ready unit and coordinate a pickup window.'],
               ['Accessory install quote', 'Ask about winches, protection, audio, racks, or marine trailers.'],
-            ].map(([title, detail]) => (
-              <div className="premium-panel p-5" key={title}>
-                <h3 className="text-lg font-semibold text-stone-50">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-stone-300">{detail}</p>
-              </div>
+            ].map(([title, detail], index) => (
+              <RevealOnScroll delay={index * 80} key={title}>
+                <div className="premium-panel h-full p-5">
+                  <h3 className="text-lg font-semibold text-stone-50">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-stone-300">{detail}</p>
+                </div>
+              </RevealOnScroll>
             ))}
           </div>
         </div>

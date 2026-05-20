@@ -5,6 +5,23 @@
 - Run one manual browser pass at desktop and mobile widths before deployment.
 - Prepare Vercel deployment and final submission summary.
 
+## Final Smooth UX Pass
+
+### Completed
+
+- Completed: Removed aggressive negative-margin overlap between Hero, CategoryStrip, and RideFinder.
+- Completed: Removed scroll-driven parallax transforms that could cause section collisions.
+- Completed: Added a lightweight `RevealOnScroll` component using `IntersectionObserver`.
+- Completed: Applied smooth reveal behavior to CategoryStrip, RideFinder, featured inventory, buyer tools, trust strip, and inventory cards.
+- Completed: Preserved terrain cards as real SRP query links and clarified filtered-inventory microcopy.
+- Completed: Verified `npm run lint`, `npm run build`, and HTTP smoke checks for required routes.
+
+### Still Worth Manual Review
+
+- Confirm Home desktop and mobile have no section overlap.
+- Confirm reveal timing feels smooth and not distracting.
+- Confirm reduced-motion mode shows content immediately.
+
 ## Signature Polish V2
 
 ### Completed
