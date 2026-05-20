@@ -433,3 +433,28 @@ Added non-interactive Hero haze/contour layers, tightened RideFinder terrain act
 Verification:
 
 `npm run lint` passed. `npm run build` passed. HTTP smoke checks returned 200 for Home, SRP, RideFinder query targets, a valid VDP, invalid VDP recovery, and unknown site route. The local dev server was stopped after checks.
+
+## 2026-05-20 - Live RideFinder Card Polish
+
+Command run:
+
+```bash
+npm run lint
+npm run build
+```
+
+Issue:
+
+The live Home page RideFinder terrain cards showed repeated/ghosted text inside the card media area, making the cards feel noisy and unfinished.
+
+Cause:
+
+RideFinder reused the shared category media placeholder for cards without real imagery. That placeholder includes category and title text, which competed with the real terrain card copy.
+
+Fix:
+
+Replaced the RideFinder-only placeholder fallback with a text-free abstract amber/graphite media layer. Kept terrain cards as real links with one category label, one title, one description, one action label, and the arrow affordance.
+
+Verification:
+
+`npm run lint` passed. `npm run build` passed. HTTP smoke checks returned 200 for Home, SRP, Side-by-Side filtered SRP, a valid VDP, and unknown site route. The local dev server was stopped after checks.

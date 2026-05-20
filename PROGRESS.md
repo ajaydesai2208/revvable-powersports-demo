@@ -24,3 +24,4 @@
 - Verified the final smooth UX pass with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, RideFinder query targets, valid and invalid VDP routes, and `/not-a-real-page`.
 - Implemented the final mockup-alignment pass: added Hero atmosphere layers, sharpened RideFinder terrain intent and action labels, kept decorative step UI out of the accessibility tree, and hardened reveal fallback behavior.
 - Verified the mockup-alignment pass with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, RideFinder query targets, valid and invalid VDP routes, and `/not-a-real-page`.
+- Applied the final live RideFinder card polish: removed duplicate placeholder text from terrain card backgrounds, kept clean linked card content, and marked the prototype submission-ready in `TODO.md`.

@@ -2,7 +2,6 @@ import { ArrowRight, BadgeDollarSign, Compass, MapPinned, ShieldCheck, Wrench } 
 import { Link } from 'react-router-dom'
 import { inventory } from '../../data/inventory'
 import type { VehicleCategory } from '../../types/inventory'
-import { CategoryMediaPlaceholder } from '../inventory/CategoryMediaPlaceholder'
 import { Button } from '../ui/Button'
 import { RevealOnScroll } from '../ui/RevealOnScroll'
 
@@ -134,7 +133,7 @@ export function RideFinder() {
                       {image ? (
                         <img className="h-full w-full object-cover opacity-70 transition duration-500 group-hover:scale-105" src={image.image} alt={image.imageAlt} loading="lazy" />
                       ) : (
-                        <CategoryMediaPlaceholder category={card.category} label={card.label} />
+                        <div className="ridefinder-card-abstract h-full w-full" aria-hidden="true" />
                       )}
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.84)),radial-gradient(circle_at_20%_12%,rgba(245,158,11,0.22),transparent_12rem)]" />
                     </div>
