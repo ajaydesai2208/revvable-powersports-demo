@@ -18,6 +18,8 @@ export function Hero() {
           alt="Dual-sport motorcycle staged near a trailhead"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_44%,rgba(245,158,11,0.34),transparent_20rem),radial-gradient(circle_at_22%_36%,rgba(245,158,11,0.18),transparent_24rem),linear-gradient(90deg,rgba(0,0,0,0.95),rgba(0,0,0,0.75)_43%,rgba(0,0,0,0.22)),linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.88))]" />
+        <div className="hero-haze" aria-hidden="true" />
+        <div className="hero-contours" aria-hidden="true" />
       </div>
       <div className="relative mx-auto grid min-h-[680px] max-w-7xl content-end gap-10 px-4 pb-16 pt-28 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
         <div className="max-w-3xl">

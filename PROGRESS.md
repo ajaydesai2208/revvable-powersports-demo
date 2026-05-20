@@ -22,3 +22,5 @@
 - Verified Signature Polish V2 with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, RideFinder query targets, valid and invalid VDP routes, and `/not-a-real-page`.
 - Stabilized the Home layout after the parallax experiment: removed negative-margin collisions and scroll-driven section transforms, then added a lightweight IntersectionObserver reveal system for Home sections, trust/service blocks, and inventory cards.
 - Verified the final smooth UX pass with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, RideFinder query targets, valid and invalid VDP routes, and `/not-a-real-page`.
+- Implemented the final mockup-alignment pass: added Hero atmosphere layers, sharpened RideFinder terrain intent and action labels, kept decorative step UI out of the accessibility tree, and hardened reveal fallback behavior.
+- Verified the mockup-alignment pass with `npm run lint`, `npm run build`, and HTTP route smoke checks for `/`, `/inventory`, RideFinder query targets, valid and invalid VDP routes, and `/not-a-real-page`.

@@ -11,7 +11,7 @@ export function RevealOnScroll({ children, className = '', delay = 0 }: RevealOn
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(() => {
     if (typeof window === 'undefined') return false
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)
   })
 
   useEffect(() => {
@@ -20,6 +20,8 @@ export function RevealOnScroll({ children, className = '', delay = 0 }: RevealOn
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReducedMotion) return
+
+    if (!('IntersectionObserver' in window)) return
 
     const observer = new IntersectionObserver(
       ([entry]) => {

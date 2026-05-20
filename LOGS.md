@@ -397,3 +397,39 @@ Removed the risky overlap mechanics and replaced them with normal document flow,
 Verification:
 
 `npm run lint` passed after moving reduced-motion visibility initialization out of the effect body. `npm run build` passed. HTTP smoke checks returned 200 for Home, SRP, RideFinder query targets, a valid VDP, invalid VDP recovery, and unknown site route. Browser automation was not exposed in this session, so final overlap/reveal review should be done manually in a real browser.
+
+## 2026-05-20 - Mockup Alignment Final
+
+Command run:
+
+```bash
+rg -- '-mt|animation-timeline|background-attachment|sticky' src\components\home src\index.css
+npm run lint
+npm run build
+Start-Process -FilePath npm -ArgumentList @('run','dev','--','--host','127.0.0.1') -PassThru -WindowStyle Hidden
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Side-by-Side&usage=Low%20hours'
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Motorcycle&usage=Low%20mileage'
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:5173/inventory?category=Watercraft'
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory/2025-polaris-rzr-xp-1000
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/inventory/not-a-real-unit
+Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5173/not-a-real-page
+Stop-Process -Id 45248 -Force
+```
+
+Issue:
+
+The app needed a final small alignment pass against the generated premium powersports mockup without reintroducing risky parallax or broad redesign.
+
+Cause:
+
+The stable version preserved behavior, but the Hero and RideFinder could more directly communicate cinematic atmosphere and terrain-to-inventory intent.
+
+Fix:
+
+Added non-interactive Hero haze/contour layers, tightened RideFinder terrain action copy, marked the decorative step rail as hidden from assistive tech, and made the reveal component show content immediately when `IntersectionObserver` is unavailable.
+
+Verification:
+
+`npm run lint` passed. `npm run build` passed. HTTP smoke checks returned 200 for Home, SRP, RideFinder query targets, a valid VDP, invalid VDP recovery, and unknown site route. The local dev server was stopped after checks.

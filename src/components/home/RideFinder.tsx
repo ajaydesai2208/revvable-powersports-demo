@@ -10,6 +10,7 @@ type TerrainCard = {
   label: string
   category: VehicleCategory
   detail: string
+  action: string
   to: string
 }
 
@@ -18,24 +19,28 @@ const terrainCards: TerrainCard[] = [
     label: 'Motorcycles',
     category: 'Motorcycle',
     detail: 'On-road, off-road, and everything in between.',
+    action: 'View low-mileage motorcycles',
     to: '/inventory?category=Motorcycle&usage=Low%20mileage',
   },
   {
     label: 'ATVs',
     category: 'ATV',
     detail: 'Work harder, explore farther, and reach the back line.',
+    action: 'View low-hour ATVs',
     to: '/inventory?category=ATV&usage=Low%20hours',
   },
   {
     label: 'Side-by-Sides',
     category: 'Side-by-Side',
     detail: 'Crew machines and sport rigs for bigger terrain.',
+    action: 'View low-hour side-by-sides',
     to: '/inventory?category=Side-by-Side&usage=Low%20hours',
   },
   {
     label: 'Watercraft',
     category: 'Watercraft',
     detail: 'Lake-ready units for dock days and weekend runs.',
+    action: 'View watercraft',
     to: '/inventory?category=Watercraft',
   },
 ]
@@ -56,8 +61,8 @@ export function RideFinder() {
     <section className="ridefinder-stage relative z-20 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
       <RevealOnScroll className="mx-auto max-w-7xl">
         <div className="terrain-panel overflow-hidden rounded-[2rem] border border-amber-200/14 bg-stone-950/82 shadow-[0_34px_100px_rgba(0,0,0,0.52)] backdrop-blur">
-        <div className="terrain-layer terrain-layer-a" aria-hidden="true" />
-        <div className="terrain-layer terrain-layer-b" aria-hidden="true" />
+          <div className="terrain-layer terrain-layer-a" aria-hidden="true" />
+          <div className="terrain-layer terrain-layer-b" aria-hidden="true" />
 
         <div className="relative grid gap-8 p-5 sm:p-7 lg:grid-cols-[170px_1fr] lg:p-10">
           <div>
@@ -71,7 +76,7 @@ export function RideFinder() {
               </div>
             </div>
 
-            <ol className="mt-8 hidden space-y-6 lg:block" aria-label="Ride Finder flow">
+            <ol className="mt-8 hidden space-y-6 lg:block" aria-hidden="true">
               {['Terrain', 'Preferences', 'Results'].map((step, index) => (
                 <li className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em]" key={step}>
                   <span
@@ -94,6 +99,9 @@ export function RideFinder() {
                 <h2 className="mt-2 text-3xl font-black tracking-[0.08em] text-stone-50 sm:text-4xl">Where will you ride?</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-300">
                   Choose a terrain card to open inventory with the right category and usage filters already applied.
+                </p>
+                <p className="mt-3 text-xs font-bold uppercase tracking-[0.16em] text-amber-200">
+                  Terrain path opens filtered inventory
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -134,7 +142,7 @@ export function RideFinder() {
                       <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-200">{card.category}</p>
                       <h3 className="mt-2 text-2xl font-black tracking-[0.08em] text-stone-50">{card.label}</h3>
                       <p className="mt-2 text-sm leading-5 text-stone-300">{card.detail}</p>
-                      <span className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-amber-200">Open filtered inventory</span>
+                      <span className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-amber-200">{card.action}</span>
                       <span className="mt-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-stone-500/70 bg-black/48 text-amber-100 transition group-hover:translate-x-1 group-hover:border-amber-300 group-hover:bg-amber-400 group-hover:text-stone-950">
                         <ArrowRight size={19} aria-hidden="true" />
                       </span>
@@ -146,17 +154,17 @@ export function RideFinder() {
           </div>
         </div>
 
-        <div className="relative grid border-t border-stone-700/70 bg-black/30 sm:grid-cols-2 lg:grid-cols-4">
-          {trustSignals.map(({ title, detail, Icon }) => (
-            <div className="flex gap-3 border-b border-stone-700/60 px-5 py-4 last:border-b-0 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0" key={title}>
-              <Icon className="mt-1 shrink-0 text-amber-300" size={20} aria-hidden="true" />
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-stone-100">{title}</p>
-                <p className="mt-1 text-sm text-stone-400">{detail}</p>
+          <div className="relative grid border-t border-stone-700/70 bg-black/30 sm:grid-cols-2 lg:grid-cols-4">
+            {trustSignals.map(({ title, detail, Icon }) => (
+              <div className="flex gap-3 border-b border-stone-700/60 px-5 py-4 last:border-b-0 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0" key={title}>
+                <Icon className="mt-1 shrink-0 text-amber-300" size={20} aria-hidden="true" />
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-stone-100">{title}</p>
+                  <p className="mt-1 text-sm text-stone-400">{detail}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
         </div>
       </RevealOnScroll>
     </section>

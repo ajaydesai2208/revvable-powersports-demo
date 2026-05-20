@@ -5,6 +5,21 @@
 - Run one manual browser pass at desktop and mobile widths before deployment.
 - Prepare Vercel deployment and final submission summary.
 
+## Mockup Alignment Final
+
+### Completed
+
+- Completed: Added mockup-inspired Hero atmosphere layers without changing layout flow.
+- Completed: Clarified RideFinder as a guided terrain-to-filtered-inventory selector with specific action labels.
+- Completed: Kept the RideFinder step rail decorative for assistive tech while preserving real keyboard-accessible inventory links.
+- Completed: Hardened reveal behavior so unsupported browsers show content immediately instead of leaving sections hidden.
+- Completed: Verified `npm run lint`, `npm run build`, and HTTP smoke checks for required routes.
+
+### Still Worth Manual Review
+
+- Confirm the Hero atmosphere and RideFinder card glow match the generated mockup direction in a real browser.
+- Confirm Home desktop and mobile spacing still feels integrated without overlap.
+
 ## Final Smooth UX Pass
 
 ### Completed
