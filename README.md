@@ -1,63 +1,33 @@
-# Revvable Powersports Dealership Demo
+# Revvable Powersports Dealership Prototype
 
-A polished three-page powersports dealership prototype for Revvable's AI-Augmented Front-End Developer take-home assessment.
+A frontend-only powersports dealership prototype built for Revvable's AI-Augmented Front-End Developer take-home assessment.
 
-The prototype will present a premium, rugged dealership experience for serious powersports buyers. It is intentionally small and shippable: a home page, a search results page for inventory browsing, and a vehicle detail page for one unit.
+The site presents a premium dark dealership experience for buyers shopping motorcycles, ATVs, side-by-sides, and watercraft. It uses mock inventory data, client-side filtering, and static frontend routing so it can deploy cleanly on Vercel.
 
-## Stack
+## Routes
+
+- `/` - Home page with cinematic dealership positioning, category paths, RideFinder, featured inventory, buyer tools, and trust cues.
+- `/inventory` - Search results page with filters, sorting, active filter state, empty states, and inventory cards.
+- `/inventory/:id` - Vehicle detail page with media, specs, payment context, related inventory, CTA intent, and lead capture.
+
+## Tech Stack
 
 - Vite
 - React
 - TypeScript
 - Tailwind CSS
 - React Router
-- Mock inventory data
-- Client-side filtering
-- Vercel-ready static deployment
-
-## Planned Routes
-
-- `/` - Dealership home page with brand positioning, featured inventory, buyer actions, and trust cues.
-- `/inventory` - SRP/search results page with inventory cards, filters, sorting, empty states, and mobile-friendly browsing.
-- `/inventory/:id` - VDP/vehicle detail page with media, specs, price, availability, financing/trade-in CTAs, and lead capture.
-
-## Current Prototype
-
-- Home page for Summit Ridge Powersports with premium rugged positioning, category paths, featured inventory, buyer tools, and dealership trust cues.
-- SRP with typed mock inventory, client-side filtering, sorting, active filter feedback, result counts, and empty state.
-- VDP with selected unit details, media, specs, payment estimate, related inventory, mock lead form, and invalid-unit handling.
-- Vercel SPA rewrite configuration in `vercel.json` for direct route loads.
+- Vercel
 
 ## Local Setup
 
 ```bash
 npm install
 npm run dev
-```
-
-## Build And Preview
-
-```bash
 npm run build
-npm run preview
-```
-
-## Deployment
-
-The app is intended for Vercel deployment as a Vite static frontend.
-
-Expected deployment command:
-
-```bash
-npm run build
-```
-
-Expected output directory:
-
-```bash
-dist
+npm run lint
 ```
 
 ## AI Workflow
 
-Codex CLI is the primary AI coding workflow for this project. The work is organized through a bounded lead-orchestrator model: the lead agent owns implementation, while scoped subagents are used for research, critique, planning review, and QA challenge without creating conflicting edits.
+I built this with Codex CLI as the primary implementation workflow. The project used local planning docs such as `AGENTS.md`, `DESIGN.md`, `PLAN.md`, `TODO.md`, `PROGRESS.md`, and `LOGS.md`, plus bounded read-only review passes for UX, visual direction, product/conversion, code quality, and QA. Implementation stayed coordinated through one lead agent instead of letting agents make conflicting edits.

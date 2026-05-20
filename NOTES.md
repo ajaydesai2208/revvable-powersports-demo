@@ -1,46 +1,52 @@
-# Assessment Writeup Draft
+# Final Assessment Writeup
 
-## Which AI Tools I Used And How I Prompted Them
+## 1. AI Tools Used And How I Prompted Them
 
-I used Codex CLI as the primary AI coding workflow. I worked as the lead orchestrator and kept implementation coordinated through one owner instead of letting agents independently rewrite the app.
+I used Codex CLI as the primary implementation agent. I started by creating project-local operating docs: `AGENTS.md`, `DESIGN.md`, `PLAN.md`, `TODO.md`, `PROGRESS.md`, and `LOGS.md`. Those files gave the work a clear product direction, design contract, implementation plan, task list, and verification trail.
 
-I used bounded subagents for focused review: product UX, visual taste, frontend architecture, and QA/accessibility. I prompted them to return concise recommendations only, then folded the useful feedback back into the plan and docs before implementation.
+I used bounded read-only subagents for focused review passes: UX, visual design, product/conversion, code quality, and QA/accessibility. I prompted them to return ranked findings and smallest useful fixes. After each review, I made targeted implementation passes instead of letting agents randomly rewrite the app.
 
-## What Worked Well
+I also used ChatGPT image generation as visual exploration for the premium powersports direction. I treated the image as direction, not a spec: stronger hero attitude, amber/graphite blending, glassy rounded panels, and a more integrated RideFinder flow. I translated those ideas into the actual React/Tailwind implementation.
 
-The strongest part of the workflow was using agents as reviewers and pressure-testers instead of treating them as unsupervised implementers. That kept the project direction coherent while still getting faster product, design, architecture, and QA feedback.
+## 2. What Worked Well
 
-The documentation-first pass also helped define what "done" means before writing UI code: three routes, useful inventory browsing, a credible VDP, mobile behavior, build verification, and Vercel readiness.
+The best part of the workflow was keeping AI work bounded. Subagents were useful as reviewers and critics, while the lead implementation stayed centralized and consistent.
 
-The best recommendations were specific to dealership buying behavior: keep inventory, price, availability, financing, trade-in, and contact paths visible instead of hiding them behind broad brand copy.
+The docs-first approach also helped. It forced clear decisions around the three pages, buyer intent, dealership credibility, mobile behavior, and verification before the UI grew.
 
-## What Did Not Work Well
+The final product improved most when the reviews focused on real dealership behavior: inventory browsing, financing intent, trade-in paths, buyer confidence, and fast ways to contact the dealer.
 
-The default Vite scaffold starts generic, so the first implementation pass has to remove template assumptions quickly. A dealership prototype needs inventory structure, buyer actions, and visual specificity from the start; otherwise it can drift into a polished but generic demo.
+## 3. What Did Not Work Well
 
-## Where I Stepped In Manually
+The riskiest part was visual motion. A parallax idea looked good in theory but created layout overlap risk, so I cut it back and replaced it with safer reveal behavior, stronger surfaces, and better section rhythm.
 
-I made the product calls manually: what the buyer should be able to do, which CTAs matter, how much filtering is enough for a take-home, and where to stop before overbuilding.
+The other challenge was imagery. Placeholder stock can weaken a powersports prototype quickly, so I replaced mismatched images with powersports-relevant media or intentional premium placeholders.
 
-I also kept final implementation ownership centralized so the project stayed small, readable, and consistent.
+## 4. Where I Stepped In Manually
 
-## Improvements With More Time
+I made the product calls manually: which CTAs mattered, how much filtering was enough, how RideFinder should route into inventory, and where to stop before overbuilding.
 
-With more time I would add richer inventory comparison, saved vehicles, payment calculator refinement, dealer hours/location data, and better lead-routing states. I would also replace placeholder imagery with dealership-specific photography and tune image crops by vehicle category.
+I manually reviewed the browser experience, tightened scope, rejected risky parallax/overlap ideas, and kept the app shippable. Build, lint, route smoke checks, and manual browser QA were part of the workflow.
 
-## Suggested Widgets/Components And Why
+## 5. Improvements I Would Make With More Time
 
-- Inventory filter rail: helps buyers narrow category, condition, make, and price without feeling like they are using a generic ecommerce grid.
-- Featured unit card: gives the home page a direct path into real inventory.
-- Payment estimate module: supports financing intent without building a full finance workflow.
-- Trade-in prompt: important for dealership lead generation and purchase readiness.
-- Sticky mobile VDP actions: keeps check availability, call/text, and finance actions accessible.
-- Short lead form: captures intent without creating friction.
+I would add real dealership inventory feeds, richer vehicle photography, better payment estimate logic, saved vehicles, dealer hours/location data, and stronger lead follow-up states.
 
-## Product/Engineering Pushback For A Real Product
+I would also tune inventory cards by category. Motorcycles, ATVs, side-by-sides, and watercraft need different comparison details.
 
-I would push for real inventory data contracts before building deeper UI. Powersports categories have different buyer signals: motorcycles often need mileage and trim, side-by-sides need hours and package details, watercraft need trailer and engine context. A real product should model those differences instead of flattening every unit into the same generic card.
+## 6. Widgets/Components I Would Suggest Adding And Why
 
-I would also push to measure lead quality, not just form submissions. The best UI is the one that helps buyers take the next useful step and helps the dealer respond with enough context to close.
+- Payment calculator: helps buyers understand affordability before submitting a lead.
+- Trade-in estimator: captures high-intent shoppers who already own a unit.
+- Saved vehicles: supports comparison across categories and visits.
+- Inventory comparison drawer: helps serious buyers compare specs, hours, mileage, and payment estimates.
+- Mobile VDP action bar: keeps availability, financing, and contact actions easy to reach.
+- Service appointment widget: powersports dealers often sell long-term ownership support, not just units.
 
-I would keep the first production slice focused on inventory discovery and high-intent leads before adding personalization, chat, or complex merchandising logic.
+## 7. What I Would Push Back On Or Do Differently In A Real Product
+
+I would push for real inventory data contracts before building deeper merchandising UI. Powersports categories have different buyer signals, and a real product should model those differences instead of flattening every unit into one generic card.
+
+I would also push to measure lead quality, not just form submissions. The goal is not more forms; it is better buyer context and faster dealer follow-up.
+
+I would keep the first production slice focused on inventory discovery, high-intent leads, financing/trade paths, and trustworthy vehicle detail pages before adding chat, personalization, or complex AI features.
