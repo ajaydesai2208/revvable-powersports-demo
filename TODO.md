@@ -5,6 +5,7 @@
 - Complete: Prototype is submission-ready.
 - Complete: Home, SRP, VDP, RideFinder, filters, lead form, CTA intent, routing, and Vercel readiness are implemented.
 - Complete: Final live RideFinder card polish removed duplicate/ghosted card text.
+- Complete: Final inventory card uniformity polish aligned media frames, title handling, and CTA placement.
 - Complete: Build, lint, route smoke checks, and manual browser QA have been part of the workflow.
 
 ## Future Ideas

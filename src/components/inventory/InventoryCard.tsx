@@ -11,9 +11,9 @@ type InventoryCardProps = {
 
 export function InventoryCard({ item }: InventoryCardProps) {
   return (
-    <article className="group relative overflow-hidden rounded-3xl border border-stone-700/80 bg-stone-950 transition duration-300 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-amber-500 before:via-orange-600 before:to-amber-300 hover:-translate-y-1 hover:border-amber-300/60 hover:shadow-[0_28px_90px_rgba(0,0,0,0.44),0_0_46px_rgba(245,158,11,0.12)]">
+    <article className="group relative flex h-full min-h-[560px] flex-col overflow-hidden rounded-3xl border border-stone-700/80 bg-stone-950 transition duration-300 before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-1 before:bg-gradient-to-r before:from-amber-500 before:via-orange-600 before:to-amber-300 hover:-translate-y-1 hover:border-amber-300/60 hover:shadow-[0_28px_90px_rgba(0,0,0,0.44),0_0_46px_rgba(245,158,11,0.12)]">
       <Link to={`/inventory/${item.id}`} aria-label={`View details for ${item.year} ${item.make} ${item.model}`}>
-        <div className="aspect-[4/3] overflow-hidden bg-stone-900">
+        <div className="h-56 overflow-hidden bg-stone-900 sm:h-60">
           {item.image ? (
             <img className="h-full w-full object-cover transition duration-500 group-hover:scale-105" src={item.image} alt={item.imageAlt} loading="lazy" />
           ) : (
@@ -21,14 +21,14 @@ export function InventoryCard({ item }: InventoryCardProps) {
           )}
         </div>
       </Link>
-      <div className="space-y-4 p-5">
+      <div className="flex flex-1 flex-col gap-4 p-5">
         <div className="flex flex-wrap gap-2">
           <Badge tone={item.availability === 'Ready for pickup' ? 'green' : 'light'}>{item.availability}</Badge>
           <Badge tone={item.condition === 'New' ? 'orange' : 'light'}>{item.condition}</Badge>
         </div>
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-amber-300">{item.category}</p>
-          <h3 className="mt-1 text-xl font-semibold leading-tight text-stone-50">
+          <h3 className="inventory-card-title mt-1 text-xl font-semibold leading-tight text-stone-50">
             {item.year} {item.make} {item.model}
           </h3>
         </div>
@@ -53,7 +53,7 @@ export function InventoryCard({ item }: InventoryCardProps) {
           </div>
         </dl>
         <Link
-          className="inline-flex min-h-11 items-center gap-2 rounded-md text-sm font-bold text-amber-300 transition hover:text-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+          className="mt-auto inline-flex min-h-11 items-center gap-2 self-start rounded-md text-sm font-bold text-amber-300 transition hover:text-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
           to={`/inventory/${item.id}`}
         >
           View details

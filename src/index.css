@@ -310,6 +310,22 @@ img {
     0 26px 80px rgba(245, 158, 11, 0.16);
 }
 
+.inventory-card-title,
+.placeholder-media-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.inventory-card-title {
+  -webkit-line-clamp: 2;
+  min-height: 3.5rem;
+}
+
+.placeholder-media-title {
+  -webkit-line-clamp: 2;
+}
+
 .ridefinder-card-abstract {
   position: relative;
   background:

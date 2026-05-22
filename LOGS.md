@@ -458,3 +458,28 @@ Replaced the RideFinder-only placeholder fallback with a text-free abstract ambe
 Verification:
 
 `npm run lint` passed. `npm run build` passed. HTTP smoke checks returned 200 for Home, SRP, Side-by-Side filtered SRP, a valid VDP, and unknown site route. The local dev server was stopped after checks.
+
+## 2026-05-22 - Inventory Card Uniformity Polish
+
+Command run:
+
+```bash
+npm run lint
+npm run build
+```
+
+Issue:
+
+The live SRP inventory grid looked uneven because real-image cards and placeholder cards could produce different visual rhythm and content height.
+
+Cause:
+
+The card used an aspect-ratio media block and normal content flow, so media composition, long unit names, and content length could shift the lower card content and CTA placement.
+
+Fix:
+
+Changed `InventoryCard` to a full-height flex column with a fixed media frame, clamped long titles, consistent body spacing, and a bottom-aligned View details link. Tightened the category placeholder so it fills the same media frame without adding extra height.
+
+Verification:
+
+`npm run lint` passed. `npm run build` passed. HTTP smoke checks returned 200 for Home, SRP, Side-by-Side filtered SRP, a valid VDP, and unknown site route. The local dev server was stopped after checks.
